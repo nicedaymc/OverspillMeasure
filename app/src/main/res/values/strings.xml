@@ -1,0 +1,32 @@
+<resources>
+
+    <string name="app_name">Test Measuring</string>
+    <string name="interval_prompt">Measuring Interval:</string>
+    <string name="ipmlogo">Macao Polytechnic Institute</string>
+    <string name="method_prompt">Test Method:</string>
+    <string name="operator_prompt">Network Operator:</string>
+    <string name="start_button">Start Measuring</string>
+    <string name="stop_button">Stop Measuring</string>
+
+    <string-array name="operator_array">
+        <item>CT Macau</item>
+        <item>CTM</item>
+        <item>3</item>
+        <item>SmarTone</item>
+
+    </string-array>
+    <string-array name="method_array">
+        <item>Road Drive</item>
+        <item>Walk</item>
+
+    </string-array>
+    <string-array name="interval_array">
+        <item>5000</item>
+        <item>2000</item>
+        <item>10000</item>
+        <item>30000</item>
+        <item>60000</item>
+
+    </string-array>
+
+</resources>
