@@ -110,6 +110,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     if (mLastLocation!=null){
       longtitude=mLastLocation.getLongitude();
       latitude=mLastLocation.getLatitude();
+      //System.out.println(mLastLocation.toString());
+      //System.out.println("provider: "+mLastLocation.getProvider());
     }else{
       longtitude=-1;
       latitude=-1;
