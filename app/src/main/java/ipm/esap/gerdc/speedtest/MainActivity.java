@@ -2,6 +2,8 @@ package ipm.esap.gerdc.speedtest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.telephony.CellSignalStrengthGsm;
 import android.telephony.CellSignalStrengthLte;
 import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.PhoneStateListener;
+import android.telephony.ServiceState;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
@@ -42,6 +45,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,7 +67,11 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
   private boolean mRequestingLocationUpdates=true;
   private LocationRequest mLocationRequest;
   private String sim_provider="unknown";
-  
+  Geocoder geocoder;
+  private double lon, lat;
+  private String countryCode="unknown";
+  private String phonestate="unknown";
+
 
   private void addListenerOnButton() {
     //spinner1 = (Spinner) findViewById(R.id.spinner1);
@@ -110,6 +118,14 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     if (mLastLocation!=null){
       longtitude=mLastLocation.getLongitude();
       latitude=mLastLocation.getLatitude();
+
+      if ((longtitude!=lon)||(latitude!=lat)){
+        lon=longtitude;
+        lat=latitude;
+        ReadCountry readCountry=new ReadCountry();
+        readCountry.start();
+      }
+
       //System.out.println(mLastLocation.toString());
       //System.out.println("provider: "+mLastLocation.getProvider());
     }else{
@@ -117,7 +133,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       latitude=-1;
     }
     String mesg = new StringBuffer().append(speedBean.getNetworkOperator() + ", " + speedBean.getConnectType() + ", " + speedBean.getSignalDbm()+"dBm")
-            .append("\n" + longtitude + ", " + latitude).toString();
+            .append("\n" + longtitude + ", " + latitude+"  "+countryCode).toString();
 
     textView1 = (TextView) findViewById(R.id.textView1);
     textView1.setText(mesg);
@@ -125,13 +141,12 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     String testLocation=editText.getText().toString();
 
 
-    mesg = testing ? "" : new StringBuffer() .append("\n\nTest parameters:\n   Option1: ").append(testLocation)    //String.valueOf(spinner1.getSelectedItem()))
+    mesg = testing ? "" : new StringBuffer() .append("\nTest parameters:\n   Option1: ").append(testLocation)    //String.valueOf(spinner1.getSelectedItem()))
             .append("\n   Option2: ").append(String.valueOf(spinner2.getSelectedItem())).append("\n   Option3: ").append(String.valueOf(spinner3.getSelectedItem()))
 
             .append("\nMeasuring Results:\n" + msg + "\n   sim: "+sim_provider+" CdmaEcio:"+speedBean.getCdmaEcio()+ " EvdoEcio:"+speedBean.getEvdoEcio()+ " EvdoSnr:"+speedBean.getEvdoSnr()+ " GsmErr:"+speedBean.getGsmErrRate())
 
             //.append(speedBean.getTestTime()).append("\n   IP Address: ").append(speedBean.getIpAddress())
-            .append("\n Longtitude:"+longtitude+" Latitude:"+latitude)
             .append("\n Signal Strength: ").append(speedBean.getSignalDbm()).append(" dBm ").append(speedBean.getSignalAsu()).append("asu")
          //  .append("asu\n   Download Speed: ")
        // .append(SpeedTools.formatNum(speedBean.getDownSpeed())).append("Mbps\n   Upload Speed: ").append(SpeedTools.formatNum(speedBean.getUpSpeed()))
@@ -148,7 +163,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     textView2.append("Write finish. Wait for next measuring..");
 
     final TelephonyManager telephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-int dBmlevel=-999;
+    int dBmlevel=-999;
     int asulevel=-999;
     List<CellInfo> cellInfoList = telephony.getAllCellInfo();
 
@@ -220,7 +235,8 @@ int dBmlevel=-999;
 /*Write to file*/
     try {
       FileWriter fileWriter = new FileWriter(myFile,true);
-      fileWriter.append(time+","+testLocation+","+sim+","+network+","+cellID+","+conTypeInt+","+connType+","+longtitude+","+latitude+","+signalDbm+","+singalAsu+","+cdma_ecio+","+evdo_ecio+","+evdo_snr+","+gsm_err+"\n");
+      fileWriter.append(time+","+countryCode+","+testLocation+","+sim+","+network+","+cellID+","+conTypeInt+
+              ","+connType+","+longtitude+","+latitude+","+signalDbm+","+singalAsu+","+cdma_ecio+","+evdo_ecio+","+evdo_snr+","+gsm_err+","+phonestate+"\n");
 
       fileWriter.flush();
       fileWriter.close();
@@ -234,6 +250,8 @@ int dBmlevel=-999;
     try {
       
       final TelephonyManager telephony = phoneManager;//(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+      //System.out.println(telephony.getNetworkCountryIso()+" "+telephony.getSimCountryIso()+" "+telephony.isNetworkRoaming());
+      speedBean.setRoaming(telephony.isNetworkRoaming());
       int connecTypeInt=telephony.getNetworkType();
       String connectType="";
       String networkOperator=telephony.getNetworkOperatorName();
@@ -330,6 +348,8 @@ int dBmlevel=-999;
     phoneManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
     phoneManager.listen(phoneListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+    phoneManager.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+
     //myTracker=new FallbackLocationTracker(this);
     //myTracker.start();
 
@@ -339,7 +359,7 @@ int dBmlevel=-999;
     }else{
       sim_provider=phoneManager.getSimOperator();
     }
-
+    geocoder= new Geocoder(this, Locale.getDefault());
     buildGoogleApiClient();
 
 
@@ -479,6 +499,7 @@ int dBmlevel=-999;
       speedBean.setEvdoSnr(signalStrength.getEvdoSnr());
       speedBean.setGsmErrRate(signalStrength.getGsmBitErrorRate());
 
+
       speedBean.setSignalAsu(signalStrength.getGsmSignalStrength());
       speedBean.setSignalDbm(signalStrength.getCdmaDbm());
       // dBm = 2 � asu - 113
@@ -489,7 +510,31 @@ int dBmlevel=-999;
         speedBean.setSignalAsu(signalStrength.getGsmSignalStrength());
         speedBean.setSignalDbm(2 * speedBean.getSignalAsu() - 113);
       }
-     // System.out.println("phone signal update... ");
+      System.out.println("phone signal update cdma:"+signalStrength.getCdmaDbm()+" evdo:"+signalStrength.getEvdoDbm()+" gsm:"+signalStrength.getGsmSignalStrength()+ " is gsm?:"+signalStrength.isGsm());
+    }
+    @Override
+    public void onServiceStateChanged (ServiceState serviceState) {
+      super.onServiceStateChanged(serviceState);
+
+
+      switch(serviceState.getState()) {
+        case ServiceState.STATE_EMERGENCY_ONLY:
+          phonestate ="EMERGENCY_ONLY";
+          break;
+        case ServiceState.STATE_IN_SERVICE:
+          phonestate ="IN_SERVICE";
+          break;
+        case ServiceState.STATE_OUT_OF_SERVICE:
+          phonestate ="OUT_OF_SERVICE";
+          break;
+        case ServiceState.STATE_POWER_OFF:
+          phonestate ="POWER_OFF";
+          break;
+        default:
+          phonestate = "Unknown";
+          break;
+      }
+      System.out.println("service state="+phonestate);
     }
   };
 
@@ -512,6 +557,39 @@ int dBmlevel=-999;
 
     @Override
     protected void onProgressUpdate(Void... values) {
+    }
+  }
+
+  class ReadCountry extends Thread{
+    public void run() {
+
+      String result = null;
+      try {
+        List<Address> addressList = geocoder.getFromLocation(
+                lat, lon, 1);
+        if (addressList != null && addressList.size() > 0) {
+          Address address = addressList.get(0);
+         /*
+          StringBuilder sb = new StringBuilder();
+          for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+            sb.append(address.getAddressLine(i)).append("\n");
+          }
+          sb.append(address.getLocality()).append("\n");
+          sb.append(address.getPostalCode()).append("\n");
+          sb.append(address.getCountryName());
+          result = sb.toString();
+          */
+          countryCode=address.getCountryCode();
+
+        }else{
+          countryCode="unknown";
+        }
+
+       // System.out.println("Got country code:"+countryCode);
+      } catch (IOException e) {
+        //System.out.println("Unable connect to Geocoder"+ e);
+      }
+
     }
   }
 }

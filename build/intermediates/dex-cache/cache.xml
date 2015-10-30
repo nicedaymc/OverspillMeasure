@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-43b9aa225ce2b927bc4d28c4e7b075a4bd54bfc8.jar" />
+        sha1="055783146ba9654a725442563be78cad303aad1f">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-062452748b5832ec1603e31a502fb43d8c92fd43.jar" />
     </item>
     <item
         jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.0.0\jars\classes.jar"
@@ -16,41 +16,6 @@
         <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-725186aa77c7bdb861f67155a07124c422ec1828.jar" />
     </item>
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1c5a76debf0c2857ccad422c4a80ed785982f8df">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-460a13831b8a92a09f627a3d7e2acc1eeb7e525f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-0a6ea198f6539f6d248c14c32c56a3e3c7a421ca.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-a4eaf781ac654a071bce144032940782d9432f1b.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="055783146ba9654a725442563be78cad303aad1f">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-062452748b5832ec1603e31a502fb43d8c92fd43.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-9c0babeedcf54e8b379a90428702d9bf41ca5d1b.jar" />
-    </item>
-    <item
         jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -58,18 +23,11 @@
         <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-811858c76bc5a3ee868d110a0f08917cd51470e7.jar" />
     </item>
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.0.0\jars\classes.jar"
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-14f0a3c7f61d5ab87e9cc6451af38d32938c73d0.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-a9662380da0f72391799e09ebc91a90c567f5140.jar" />
+        sha1="eb69b5c2e53e59d82f7439f3217f46f9d98f0c89">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-285cc5f62e5d64e05ffdd41dce429c1e9af784d4.jar" />
     </item>
     <item
         jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.0.0\jars\classes.jar"
@@ -79,39 +37,11 @@
         <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-f1fb8d9feaa72d45c479f7d5181f5214ca053126.jar" />
     </item>
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\jars\classes.jar"
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-adb9cc5f932bda6cab3aabae00d31c8ec58e3664.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-74fe5a564ab7ead46ca2d213bca052ebcf738b23.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-55b5e6efcb85286814d5b758ab98c47da4dd5f24.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-6c7b028061363c755f62ef503c4b58e65ae10e57.jar" />
-    </item>
-    <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-b7f94f81a684dacec55e274ca733a085949f7bed.jar" />
+        sha1="4c93d99d454c975536bbe3b42283eee847f03ea3">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-e45549994954e1d8da6f5664b551c4c4b8ec33ed.jar" />
     </item>
     <item
         jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.0.0\jars\classes.jar"
@@ -119,6 +49,20 @@
         revision="21.1.2"
         sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
         <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-b9a99b606239ed7ab7f316c53d6b69ce0be4e6c6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="17f8750d5c0749e44dd7c54aa390d9c937803825">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-b4cc0e4609e264eea13393a691fabd7026d7c8ff.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-6c7b028061363c755f62ef503c4b58e65ae10e57.jar" />
     </item>
     <item
         jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.0.0\jars\classes.jar"
@@ -135,25 +79,46 @@
         <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-e05586ab6cdf041df1360bd2959e1d68ff2585e9.jar" />
     </item>
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.0.0\jars\classes.jar"
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4c93d99d454c975536bbe3b42283eee847f03ea3">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-e45549994954e1d8da6f5664b551c4c4b8ec33ed.jar" />
+        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-74fe5a564ab7ead46ca2d213bca052ebcf738b23.jar" />
     </item>
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.0.0\jars\classes.jar"
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="eb69b5c2e53e59d82f7439f3217f46f9d98f0c89">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-285cc5f62e5d64e05ffdd41dce429c1e9af784d4.jar" />
+        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-0a6ea198f6539f6d248c14c32c56a3e3c7a421ca.jar" />
     </item>
     <item
-        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.0.0\jars\classes.jar"
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="17f8750d5c0749e44dd7c54aa390d9c937803825">
-        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-b4cc0e4609e264eea13393a691fabd7026d7c8ff.jar" />
+        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-a9662380da0f72391799e09ebc91a90c567f5140.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-b7f94f81a684dacec55e274ca733a085949f7bed.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-14f0a3c7f61d5ab87e9cc6451af38d32938c73d0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-9c0babeedcf54e8b379a90428702d9bf41ca5d1b.jar" />
     </item>
     <item
         jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\jars\classes.jar"
@@ -161,6 +126,41 @@
         revision="21.1.2"
         sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
         <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-4898c489331e4b60c38a3393703d3b419f20b2c5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-a4eaf781ac654a071bce144032940782d9432f1b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1c5a76debf0c2857ccad422c4a80ed785982f8df">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-460a13831b8a92a09f627a3d7e2acc1eeb7e525f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-adb9cc5f932bda6cab3aabae00d31c8ec58e3664.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-43b9aa225ce2b927bc4d28c4e7b075a4bd54bfc8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
+        <dex dex="C:\Users\Yapeng\StudioProjects\IPMSpeedTest\app\build\intermediates\pre-dexed\debug\classes-55b5e6efcb85286814d5b758ab98c47da4dd5f24.jar" />
     </item>
 
 </items>

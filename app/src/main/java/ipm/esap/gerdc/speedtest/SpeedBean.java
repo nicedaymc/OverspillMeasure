@@ -7,6 +7,14 @@ public class SpeedBean {
 
   private int signalLevel, signalAsu, signalDbm, cdmaEcio, cdmaDbm, evdoDbm, evdoEcio, evdoSnr, gsmErrRate, cellID, conTypeInt;
 
+  private boolean isRoaming=false;
+
+  public void setRoaming(boolean isRoaming){
+    this.isRoaming=isRoaming;
+  }
+public boolean isRoaming(){
+  return isRoaming;
+}
   public SpeedBean() {
     super();
   }
