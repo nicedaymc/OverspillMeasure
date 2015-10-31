@@ -251,7 +251,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       
       final TelephonyManager telephony = phoneManager;//(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
       //System.out.println(telephony.getNetworkCountryIso()+" "+telephony.getSimCountryIso()+" "+telephony.isNetworkRoaming());
-      speedBean.setRoaming(telephony.isNetworkRoaming());
+      speedBean.setRoaming(telephony.isNetworkRoaming()); //record roaming
       int connecTypeInt=telephony.getNetworkType();
       String connectType="";
       String networkOperator=telephony.getNetworkOperatorName();
