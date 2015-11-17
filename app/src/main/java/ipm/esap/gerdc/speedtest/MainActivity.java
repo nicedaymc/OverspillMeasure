@@ -13,6 +13,7 @@ import android.telephony.CellInfoCdma;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
 import android.telephony.CellInfoWcdma;
+import android.telephony.CellLocation;
 import android.telephony.CellSignalStrengthCdma;
 import android.telephony.CellSignalStrengthGsm;
 import android.telephony.CellSignalStrengthLte;
@@ -72,7 +73,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
   private String countryCode="unknown";
   private String phonestate="unknown";
 
-
   private void addListenerOnButton() {
     //spinner1 = (Spinner) findViewById(R.id.spinner1);
     //spinner1.setSelection(0);
@@ -112,9 +112,27 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     });
   }
 
+  private int getAsuFromString(String value){
+    try {
+      if (value.contains("ss=")) {
+        String value2 = value.substring(value.indexOf("ss=") + 3);
+        int asu=Integer.parseInt(value2.substring(0, value2.indexOf(" ")));
+        System.out.println("%%%%%%%%%%%%"+value+":"+asu);
+        return asu;
+
+      } else {
+        return -1;
+      }
+    }catch (Exception e){
+      return -1;
+    }
+
+  }
+
   private void showMesg(boolean testing) {
     double longtitude=-1;
     double latitude=-1;
+    boolean writeResult=false;
     if (mLastLocation!=null){
       longtitude=mLastLocation.getLongitude();
       latitude=mLastLocation.getLatitude();
@@ -122,6 +140,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       if ((longtitude!=lon)||(latitude!=lat)){
         lon=longtitude;
         lat=latitude;
+        writeResult=true;
         ReadCountry readCountry=new ReadCountry();
         readCountry.start();
       }
@@ -132,6 +151,59 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       longtitude=-1;
       latitude=-1;
     }
+
+    final TelephonyManager telephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+    int dBmlevel=-999;
+    int asulevel=-999;
+
+    List<CellInfo> cellInfoList = telephony.getAllCellInfo();
+
+    //Checking if list values are not null
+    if ((cellInfoList != null)&&(cellInfoList.size()>0)) {
+
+      final CellInfo info=cellInfoList.get(0);
+      if (info instanceof CellInfoGsm) {
+        //GSM Network
+        CellSignalStrengthGsm cellSignalStrength = ((CellInfoGsm)info).getCellSignalStrength();
+        dBmlevel = cellSignalStrength.getDbm();
+        asulevel = cellSignalStrength.getAsuLevel();
+
+      }
+      else if (info instanceof CellInfoCdma) {
+        //CDMA Network
+        CellSignalStrengthCdma cellSignalStrength = ((CellInfoCdma)info).getCellSignalStrength();
+        dBmlevel = cellSignalStrength.getCdmaDbm();
+        asulevel = cellSignalStrength.getAsuLevel();
+
+      }
+      else if (info instanceof CellInfoLte) {
+        //LTE Network
+        CellSignalStrengthLte cellSignalStrength = ((CellInfoLte)info).getCellSignalStrength();
+        asulevel=getAsuFromString(cellSignalStrength.toString());
+        dBmlevel = 2*asulevel-113;
+
+      }
+      else if  (info instanceof CellInfoWcdma) {
+        //WCDMA Network
+        CellSignalStrengthWcdma cellSignalStrength = ((CellInfoWcdma)info).getCellSignalStrength();
+        dBmlevel = cellSignalStrength.getDbm();
+        asulevel = cellSignalStrength.getAsuLevel();
+      } else{
+        System.out.println(info);
+        //Developed as a Cordova plugin, that's why I'm using callbackContext
+        // callbackContext.error("Unknown type of cell signal.");
+
+      }
+
+      if ((dBmlevel>-112)&&(dBmlevel<-40)){
+        speedBean.setSignalDbm(dBmlevel);
+        speedBean.setSignalAsu(asulevel);
+      }
+
+    }
+
+
+
     String mesg = new StringBuffer().append(speedBean.getNetworkOperator() + ", " + speedBean.getConnectType() + ", " + speedBean.getSignalDbm()+"dBm")
             .append("\n" + longtitude + ", " + latitude+"  "+countryCode).toString();
 
@@ -157,18 +229,23 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
 
     textView2 = (TextView) findViewById(R.id.textView2);
     textView2.setText(mesg);
+    if (writeResult) {
+      writeToFile(speedBean.getTestTime(), testLocation, sim_provider, speedBean.getNetworkOperator(), speedBean.getCellID(), speedBean.getConnectType(),
+              speedBean.getConTypeInt(), latitude, longtitude, speedBean.getSignalDbm(), speedBean.getSignalAsu(),
+              speedBean.getCdmaEcio(), speedBean.getEvdoDbm(), speedBean.getEvdoSnr(), speedBean.getGsmErrRate(), speedBean.isRoaming());
+      textView2.append("Write finish. Wait for next measuring..");
+    }else{
+      textView2.append("No need to write. Wait for next measuring..");
+    }
 
-    writeToFile(speedBean.getTestTime(),testLocation,sim_provider,speedBean.getNetworkOperator(), speedBean.getCellID(),speedBean.getConnectType(),speedBean.getConTypeInt(),latitude,longtitude,speedBean.getSignalDbm(),speedBean.getSignalAsu(),
-    speedBean.getCdmaEcio(),speedBean.getEvdoDbm(),speedBean.getEvdoSnr(),speedBean.getGsmErrRate());
-    textView2.append("Write finish. Wait for next measuring..");
+    //final TelephonyManager telephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+    dBmlevel=-999;
+    asulevel=-999;
 
-    final TelephonyManager telephony = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-    int dBmlevel=-999;
-    int asulevel=-999;
-    List<CellInfo> cellInfoList = telephony.getAllCellInfo();
+    cellInfoList = telephony.getAllCellInfo();
 
     //Checking if list values are not null
-    if (cellInfoList != null) {
+    if ((cellInfoList != null)&&(cellInfoList.size()>0)) {
       System.out.println("Get All Cells="+cellInfoList.size());
       for (final CellInfo info : cellInfoList) {
         if (info instanceof CellInfoGsm) {
@@ -218,7 +295,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
 
   }
 
-  private void writeToFile (String time, String testLocation, String sim, String network, int cellID,String connType,int conTypeInt, double longtitude, double latitude, int signalDbm, int singalAsu ,int cdma_ecio, int evdo_ecio, int evdo_snr, int gsm_err){
+  private void writeToFile (String time, String testLocation, String sim, String network, int cellID,String connType,int conTypeInt,
+                            double longtitude, double latitude, int signalDbm, int singalAsu ,int cdma_ecio, int evdo_ecio, int evdo_snr, int gsm_err,boolean isRoaming){
     String date=time.substring(0,10);
     String fileName = date+".csv";
     String dirName = "Download";
@@ -236,7 +314,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     try {
       FileWriter fileWriter = new FileWriter(myFile,true);
       fileWriter.append(time+","+countryCode+","+testLocation+","+sim+","+network+","+cellID+","+conTypeInt+
-              ","+connType+","+longtitude+","+latitude+","+signalDbm+","+singalAsu+","+cdma_ecio+","+evdo_ecio+","+evdo_snr+","+gsm_err+","+phonestate+"\n");
+              ","+connType+","+longtitude+","+latitude+","+signalDbm+","+singalAsu+","+cdma_ecio+","+evdo_ecio+","+evdo_snr+","+gsm_err+","+phonestate+","+isRoaming+"\n");
 
       fileWriter.flush();
       fileWriter.close();
@@ -255,7 +333,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       int connecTypeInt=telephony.getNetworkType();
       String connectType="";
       String networkOperator=telephony.getNetworkOperatorName();
-      speedBean.setNetworkOperator(networkOperator );
+      speedBean.setNetworkOperator(networkOperator);
       switch (connecTypeInt) {
       case TelephonyManager.NETWORK_TYPE_1xRTT : connectType="1xRTT";break;
       case TelephonyManager.NETWORK_TYPE_CDMA : connectType="CDMA";break;
@@ -272,6 +350,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       case TelephonyManager.NETWORK_TYPE_UMTS : connectType="UMTS";break;
         case TelephonyManager.NETWORK_TYPE_LTE : connectType="LTE"; break;
       case TelephonyManager.NETWORK_TYPE_UNKNOWN : connectType="UNKNOWN";break;
+        case 17: connectType="TD_SCDMA";break;
       }
       speedBean.setConnectType(connectType);
       speedBean.setConTypeInt(connecTypeInt);
@@ -413,7 +492,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     phoneManager.listen(phoneListener, PhoneStateListener.LISTEN_NONE);
    // myTracker.stop();
     stopLocationUpdates();
-    mRequestingLocationUpdates=false;
+    //mRequestingLocationUpdates=false;
 
   }
 
@@ -425,10 +504,11 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
     if (!mGoogleApiClient.isConnected()){
       mGoogleApiClient.connect();
     }
+    /*
     if (!mRequestingLocationUpdates) {
       startLocationUpdates();
       mRequestingLocationUpdates=true;
-    }
+    }*/
 
   }
 
@@ -504,12 +584,33 @@ public class MainActivity extends Activity implements OnItemSelectedListener ,Go
       speedBean.setSignalDbm(signalStrength.getCdmaDbm());
       // dBm = 2 � asu - 113
       if (phoneManager.getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA) {
-        speedBean.setSignalDbm(signalStrength.getCdmaDbm());
-        speedBean.setSignalAsu((speedBean.getSignalDbm() + 113) / 2);
+        int dBmlevel=signalStrength.getCdmaDbm();
+        int asulevel=(dBmlevel+113)/2;
+        if ((dBmlevel>-112)&&(dBmlevel< -40)) {
+          speedBean.setSignalDbm(dBmlevel);
+          speedBean.setSignalAsu(asulevel);
+        }
+
       } else if (phoneManager.getPhoneType() == TelephonyManager.PHONE_TYPE_GSM) {
-        speedBean.setSignalAsu(signalStrength.getGsmSignalStrength());
-        speedBean.setSignalDbm(2 * speedBean.getSignalAsu() - 113);
+        int asulevel=signalStrength.getGsmSignalStrength();
+        int dBmlevel=2*asulevel-113;
+
+
+        if (phoneManager.getNetworkType()==17){
+          System.out.println("This is TD-SCDMA");
+          String signal=signalStrength.toString();
+          String[] tokens=signal.split(" ");
+          int dbm=Integer.parseInt(tokens[13]);
+          speedBean.setSignalDbm(dbm);
+          speedBean.setSignalAsu((dbm+113)/2);
+        }else {
+          speedBean.setSignalDbm(dBmlevel);
+          speedBean.setSignalAsu(asulevel);
+        }
+
       }
+      //System.out.println(signalStrength.getEvdoSnr());
+      System.out.println(signalStrength.toString());
       System.out.println("phone signal update cdma:"+signalStrength.getCdmaDbm()+" evdo:"+signalStrength.getEvdoDbm()+" gsm:"+signalStrength.getGsmSignalStrength()+ " is gsm?:"+signalStrength.isGsm());
     }
     @Override
